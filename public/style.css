@@ -43,10 +43,10 @@ table {
     font-size: absolute;
     text-align: left;
     }
-/* th {
+th {
     background-color: wheat;
     color: black;
 }
 tr:nth-child(even) {
     background-color: tan;
-} */
+}
