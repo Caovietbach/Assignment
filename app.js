@@ -57,15 +57,9 @@ app.post('/product',async (req,res)=>{
     const picURLInput = req.body.txtPicURL
 
     if(isNaN(priceInput)==true){
-        const errorMessage2 = "Gia phai la so!"
+        const errorMessage = "Gia phai la so!"
         const oldValues = {name:nameInput,price:priceInput,picURL:picURLInput}
-        res.render('product',{error2:errorMessage2,oldValues:oldValues})
-        return;
-    } 
-    if(nameInput.value.lenght == 0){
-        const errorMessage1 = "Gia phai la so!"
-        const oldValues = {name:nameInput,price:priceInput,picURL:picURLInput}
-        res.render('product',{error1:errorMessage1,oldValues:oldValues})
+        res.render('product',{error:errorMessage2,oldValues:oldValues})
         return;
     } 
     const newP = {name:nameInput,price:Number.parseFloat(priceInput),picURL:picURLInput}
