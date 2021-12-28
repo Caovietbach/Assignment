@@ -59,7 +59,7 @@ app.post('/product',async (req,res)=>{
     if(isNaN(priceInput)==true){
         const errorMessage = "Gia phai la so!"
         const oldValues = {name:nameInput,price:priceInput,picURL:picURLInput}
-        res.render('product',{error:errorMessage2,oldValues:oldValues})
+        res.render('product',{error:errorMessage,oldValues:oldValues})
         return;
     } 
     const newP = {name:nameInput,price:Number.parseFloat(priceInput),picURL:picURLInput}
