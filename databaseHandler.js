@@ -15,7 +15,6 @@ async function insertObjectToCollection(collectionName,objectValue){
 }
 async function getAllDocumentsFromCollection(collectionName) {
     const dbo = await getDatabase()
-    //const results = await dbo.collection(collectionName).find({}).sort({name:1}).limit(7).toArray()   
     const results = await dbo.collection(collectionName).find({}).toArray()
     return results
 }
