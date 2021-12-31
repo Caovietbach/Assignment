@@ -8,10 +8,9 @@ async function getDatabase() {
     const dbo = client.db(DATABASE_NAME)
     return dbo
 }
-async function insertObjectToCollection(collectionName,objectValue){
+async function insertObjectToCollection(collectionName,obj){
     const dbo = await getDatabase()
-    const result = await dbo.collection(collectionName).insertOne(objectValue)
-    console.log("Gia tri id moi duoc insert la: ", result.insertedId.toHexString());
+    const result = await dbo.collection(collectionName).insertOne(obj)
 }
 async function getAllDocumentsFromCollection(collectionName) {
     const dbo = await getDatabase()
@@ -26,11 +25,11 @@ async function updateCollection(collectionName, myquery, newvalues) {
     const dbo = await getDatabase()
     await dbo.collection(collectionName).updateOne(myquery, newvalues)
 }
-
 async function getDocumentById(collectionName, id) {
     const dbo = await getDatabase()
     const productToEdit = await dbo.collection(collectionName).findOne({ _id: ObjectId(id) })
     return productToEdit
 }
 
-module.exports ={getDatabase,insertObjectToCollection, getAllDocumentsFromCollection, deleteDocumentById, updateCollection, getDocumentById}
+module.exports ={getDatabase,insertObjectToCollection, getAllDocumentsFromCollection, deleteDocumentById, 
+    updateCollection, getDocumentById}
