@@ -31,5 +31,4 @@ async function getDocumentById(collectionName, id) {
     return productToEdit
 }
 
-module.exports ={getDatabase,insertObjectToCollection, getAllDocumentsFromCollection, deleteDocumentById, 
-    updateCollection, getDocumentById}
+module.exports ={getDatabase,insertObjectToCollection, getAllDocumentsFromCollection, deleteDocumentById, updateCollection, getDocumentById}
