@@ -16,12 +16,15 @@
     <h2>New Product</h2>
     <form action="/product" method="post">
         Name: <input type="text" name="txtName" id="txtName" value="{{oldValues.name}}">
-        <span style="color: red;">{{error}}</span> 
+        <span style="color: red;">{{errorName}}</span> 
         <br>
         Price:   <input type="text" name="txtPrice" id="txtPrice" value="{{oldValues.price}}">
+        <span style="color: red;">{{errorPrice}}</span> 
+        <span style="color: red;">{{errorPriceNaN}}</span> 
         <br>
         Picture URL:
         <input type="text" name="txtPicURL" id="txtPicURL" size="150" value="{{oldValues.picURL}}">
+        <span style="color: red;">{{errorLink}}</span> 
         <br>
         <input type="submit" value="Insert">
     </form>

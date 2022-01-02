@@ -58,22 +58,27 @@ app.post('/product',async (req,res)=>{
 
     if (nameInput.length == 0){
         const errorMessage = "San pham phai co ten";
-        const oldValues = {price:priceInput,picURL:picURLInput}
-        res.render('product',{errorName:errorMessage})
+        const oldValues = {name:nameInput,price:priceInput,picURL:picURLInput}
+        res.render('product',{errorName:errorMessage,oldValues:oldValues})
         console.log("a")
         return;
     } else if (priceInput.length == 0){
         const errorMessage = "San pham phai co gia";
-        res.render('product',{errorPrice:errorMessage})
+        const oldValues = {name:nameInput,price:priceInput,picURL:picURLInput}
+        res.render('product',{errorPrice:errorMessage,oldValues:oldValues})
+        console.log("b")
         return;
     } else if(isNaN(priceInput)== true){
         const errorMessage = "Gia phai la so!"
         const oldValues = {name:nameInput,price:priceInput,picURL:picURLInput}
         res.render('product',{errorPriceNaN:errorMessage,oldValues:oldValues})
+        console.log("c")
         return;
     } else if (picURLInput.length == 0 ) {
         const errorMessage = "San pham phai co anh"
-        res.render('product',{errorLink:errorMessage})
+        const oldValues = {name:nameInput,price:priceInput,picURL:picURLInput}
+        res.render('product',{errorLink:errorMessage,oldValues:oldValues})
+        console.log("d")
         return;
     } else {
         const newP = {name:nameInput,price:Number.parseFloat(priceInput),picURL:picURLInput}
