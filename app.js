@@ -62,6 +62,10 @@ app.post('/product',async (req,res)=>{
         res.render('product',{errorName:errorMessage})
         console.log("a")
         return;
+    } else if (priceInput.length == 0){
+        const errorMessage = "San pham phai co gia";
+        res.render('product',{errorPrice:errorMessage})
+        return;
     } else if(isNaN(priceInput)== true){
         const errorMessage = "Gia phai la so!"
         const oldValues = {name:nameInput,price:priceInput,picURL:picURLInput}
