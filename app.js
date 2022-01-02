@@ -56,16 +56,27 @@ app.post('/product',async (req,res)=>{
     const priceInput = req.body.txtPrice
     const picURLInput = req.body.txtPicURL
 
-    if(isNaN(priceInput)==true){
+    if (nameInput.length == 0){
+        const errorMessage = "San pham phai co ten";
+        const oldValues = {price:priceInput,picURL:picURLInput}
+        res.render('product',{errorName:errorMessage})
+        console.log("a")
+        return;
+    } else if(isNaN(priceInput)== true){
         const errorMessage = "Gia phai la so!"
         const oldValues = {name:nameInput,price:priceInput,picURL:picURLInput}
-        res.render('product',{error:errorMessage,oldValues:oldValues})
+        res.render('product',{errorPriceNaN:errorMessage,oldValues:oldValues})
         return;
-    } 
-    const newP = {name:nameInput,price:Number.parseFloat(priceInput),picURL:picURLInput}
-    const collectionName = "Products"
-    insertObjectToCollection(collectionName,newP)   
-    res.redirect('/view')
+    } else if (picURLInput.length == 0 ) {
+        const errorMessage = "San pham phai co anh"
+        res.render('product',{errorLink:errorMessage})
+        return;
+    } else {
+        const newP = {name:nameInput,price:Number.parseFloat(priceInput),picURL:picURLInput}
+        const collectionName = "Products"
+        await insertObjectToCollection(collectionName,newP)   
+        res.redirect('/view')
+    }
     
 })
 
