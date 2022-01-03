@@ -56,36 +56,11 @@ app.post('/product',async (req,res)=>{
     const priceInput = req.body.txtPrice
     const picURLInput = req.body.txtPicURL
 
-    if (nameInput.length == 0){
-        const errorMessage = "San pham phai co ten";
-        const oldValues = {name:nameInput,price:priceInput,picURL:picURLInput}
-        res.render('product',{errorName:errorMessage,oldValues:oldValues})
-        console.log("a")
-        return;
-    } else if (priceInput.length == 0){
-        const errorMessage = "San pham phai co gia";
-        const oldValues = {name:nameInput,price:priceInput,picURL:picURLInput}
-        res.render('product',{errorPrice:errorMessage,oldValues:oldValues})
-        console.log("b")
-        return;
-    } else if(isNaN(priceInput)== true){
-        const errorMessage = "Gia phai la so!"
-        const oldValues = {name:nameInput,price:priceInput,picURL:picURLInput}
-        res.render('product',{errorPriceNaN:errorMessage,oldValues:oldValues})
-        console.log("c")
-        return;
-    } else if (picURLInput.length == 0 ) {
-        const errorMessage = "San pham phai co anh"
-        const oldValues = {name:nameInput,price:priceInput,picURL:picURLInput}
-        res.render('product',{errorLink:errorMessage,oldValues:oldValues})
-        console.log("d")
-        return;
-    } else {
-        const newP = {name:nameInput,price:Number.parseFloat(priceInput),picURL:picURLInput}
-        const collectionName = "Products"
-        await insertObjectToCollection(collectionName,newP)   
-        res.redirect('/view')
-    }
+    
+    const newP = {name:nameInput,price:Number.parseFloat(priceInput),picURL:picURLInput}
+    const collectionName = "Products"
+    await insertObjectToCollection(collectionName,newP)   
+    res.redirect('/view')
     
 })
 
