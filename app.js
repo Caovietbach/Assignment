@@ -56,10 +56,12 @@ app.post('/product',async (req,res)=>{
     const priceInput = req.body.txtPrice
     const picURLInput = req.body.txtPicURL
 
+
+    
     if (nameInput.length == 0){
         const errorMessage = "San pham phai co ten";
-        const oldValues = {name:nameInput,price:priceInput,picURL:picURLInput}
-        res.render('product',{errorName:errorMessage,oldValues:oldValues})
+        const oldValues = {price:priceInput,picURL:picURLInput}
+        res.render('product',{errorName:errorMessage})
         console.log("a")
         return;
     } else if (priceInput.length == 0){
