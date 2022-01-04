@@ -56,16 +56,14 @@ app.post('/product',async (req,res)=>{
     const priceInput = req.body.txtPrice
     const picURLInput = req.body.txtPicURL
 
-
-    
     if (nameInput.length == 0){
-        const errorMessage = "San pham phai co ten";
+        const errorMessage = "San pham phai co ten!";
         const oldValues = {price:priceInput,picURL:picURLInput}
         res.render('product',{errorName:errorMessage})
         console.log("a")
         return;
     } else if (priceInput.length == 0){
-        const errorMessage = "San pham phai co gia";
+        const errorMessage = "San pham phai co gia!";
         const oldValues = {name:nameInput,price:priceInput,picURL:picURLInput}
         res.render('product',{errorPrice:errorMessage,oldValues:oldValues})
         console.log("b")
@@ -77,7 +75,7 @@ app.post('/product',async (req,res)=>{
         console.log("c")
         return;
     } else if (picURLInput.length == 0 ) {
-        const errorMessage = "San pham phai co anh"
+        const errorMessage = "San pham phai co anh!"
         const oldValues = {name:nameInput,price:priceInput,picURL:picURLInput}
         res.render('product',{errorLink:errorMessage,oldValues:oldValues})
         console.log("d")
