@@ -39,7 +39,6 @@ app.get('/product',async (req,res)=>{
 
 app.get('/delete',async (req,res)=>{
     const id = req.query.id
-    console.log("id can xoa:"+ id)
     const collectionName = "Products"
     await deleteDocumentById(collectionName, id)
     res.redirect('/view')
@@ -55,32 +54,41 @@ app.post('/product',async (req,res)=>{
     const nameInput = req.body.txtName
     const priceInput = req.body.txtPrice
     const picURLInput = req.body.txtPicURL
+    const colorInput = req.body.txtColor
+
+
+
 
     if (nameInput.length == 0){
         const errorMessage = "San pham phai co ten!";
-        const oldValues = {price:priceInput,picURL:picURLInput}
+        const oldValues = {price:priceInput,color: colorInput,picURL:picURLInput}
         res.render('product',{errorName:errorMessage})
         console.log("a")
         return;
     } else if (priceInput.length == 0){
         const errorMessage = "San pham phai co gia!";
-        const oldValues = {name:nameInput,price:priceInput,picURL:picURLInput}
+        const oldValues = {name:nameInput,color: colorInput,picURL:picURLInput}
         res.render('product',{errorPrice:errorMessage,oldValues:oldValues})
         console.log("b")
         return;
     } else if(isNaN(priceInput)== true){
         const errorMessage = "Gia phai la so!"
-        const oldValues = {name:nameInput,price:priceInput,picURL:picURLInput}
+        const oldValues = {name:nameInput,price:priceInput,color: colorInput,picURL:picURLInput}
         res.render('product',{errorPriceNaN:errorMessage,oldValues:oldValues})
         console.log("c")
         return;
     } else if (picURLInput.length == 0 ) {
         const errorMessage = "San pham phai co anh!"
-        const oldValues = {name:nameInput,price:priceInput,picURL:picURLInput}
+        const oldValues = {name:nameInput,price:priceInput,color: colorInput,picURL:picURLInput}
         res.render('product',{errorLink:errorMessage,oldValues:oldValues})
         console.log("d")
         return;
-    } else {
+    } else if (colorInput.length < 3) {
+        const errorMessage = "Mau cua san pham phai co hon 3 ki tu"
+        const oldValues = {name:nameInput,price:priceInput,color: colorInput,picURL:picURLInput}
+        res.render('product',{errorColor:errorMessage,oldValues:oldValues})
+        console.log("e")
+    }    else {
         const newP = {name:nameInput,price:Number.parseFloat(priceInput),picURL:picURLInput}
         const collectionName = "Products"
         await insertObjectToCollection(collectionName,newP)   
