@@ -89,7 +89,7 @@ app.post('/product',async (req,res)=>{
         res.render('product',{errorColor:errorMessage,oldValues:oldValues})
         console.log("e")
     }    else {
-        const newP = {name:nameInput,price:Number.parseFloat(priceInput),color:ColorInput,picURL:picURLInput}
+        const newP = {name:nameInput,price:Number.parseFloat(priceInput),color:colorInput,picURL:picURLInput}
         const collectionName = "Products"
         await insertObjectToCollection(collectionName,newP)   
         res.redirect('/view')
